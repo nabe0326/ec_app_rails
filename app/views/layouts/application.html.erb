@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<body>
+  <header>
+    <h1>
+      <%= image_tag "logo-test.png" %>
+    </h1>
+     <nav>
+       <ul class="nav-items">
+       <% if current_user %>
+        <li>ようこそ,<%= current_user.name %>さん！</li>
+        <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+       <% else %>
+        <li>ようこそ、ゲストさん！</li>
+        <li><%= link_to "Log in" , new_user_session_path %></li>
+        <li><%= link_to "Sign up" , new_user_registration_path %></li>
+       <% end %>
+       </ul>
+     </nav>
+  </header>
+
+  <% if flash.present? %>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div,value,class:key) %>
+    <% end %>
+  <% end %>
+  <%= yield %>
+</body>
+
