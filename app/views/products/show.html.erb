@@ -1,0 +1,22 @@
+<div class="contianer">
+  <div class="detail-card">
+      <div class="img">
+      <%= image_tag @product.image.to_s %>
+    </div>
+    <div class="inner-text">
+      <div class="text">
+        <h3><%= @product.name %></h4></h3>
+        <p><%= @product.description %></p>
+        <p class="value">¥<%= @product.price %></p>
+      </div>
+      <div class="btn">
+          <button>
+            <%= link_to "#" do %>
+              <span>買い物カゴに入れる</span>
+            <% end %>
+          </button>
+          <button><%= link_to "編集", edit_product_path %></button>
+      </div>
+    </div>
+  </div>
+</div>

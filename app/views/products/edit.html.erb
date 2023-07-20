@@ -1,0 +1,32 @@
+<div class="form">
+  <h2>商品の更新</h2>
+  <div class="p-5">
+    <% if @product.errors.any? %><%# エラーメッセージが存在するか否か %>
+      <div class="alert alert-warning">
+        <ul>
+        <%# 返ってきた商品データに入っているerror_messagesを変数messageに格納して表示 %>
+          <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form_with model: @product, local: true do |f| %>
+      <div>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div>
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+      <div>
+        <%= f.label :price %>
+        <%= f.text_field :price, class: "form-control" %>
+      </div>
+      <div class="mt-3 row">
+        <%= f.submit "更新する" %>
+      </div>
+    <% end %>
+  </div>
+</div>

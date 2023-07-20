@@ -1,0 +1,35 @@
+<div class="form mb-5">
+    <h2>商品の登録</h2>
+    <div class="p-5 product-form">
+        <% if @product.errors.any? %>
+            <div class="alert alert-warning">
+                <ul>
+                    <% @product.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+        <%= form_with model: @product, local:true do |f| %>
+            <div>
+                <%= f.label :image %>
+                <%= f.file_field :image %>
+            </div>
+            <div>
+                <%= f.label :name %>
+                <%= f.text_field :name , class: "form-control" %>
+            </div>
+            <div>
+                <%= f.label :description %>
+                <%= f.text_field :description , class: "form-control" %>
+            </div>
+            <div>
+                <%= f.label :price %>
+                <%= f.text_field :price, class: "form-control" %>
+            </div>
+            <div class="mt-3 row">
+                <%= f.submit "登録する" %>
+            </div>
+        <% end %>
+    </div>
+</div>

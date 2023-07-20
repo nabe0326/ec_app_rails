@@ -8,6 +8,8 @@
        <ul class="nav-items">
        <% if current_user %>
         <li>ようこそ,<%= current_user.name %>さん！</li>
+        <li><%= link_to '商品の登録' , new_product_path %></li>
+        <li><%= link_to '商品を探す' , products_path %></li>
         <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
        <% else %>
         <li>ようこそ、ゲストさん！</li>

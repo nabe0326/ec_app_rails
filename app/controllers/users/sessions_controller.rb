@@ -24,4 +24,9 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  protected
+
+  def after_sign_in_path_for(resource)
+    products_path #ログイン後に遷移させたいページのパス
+  end
 end
