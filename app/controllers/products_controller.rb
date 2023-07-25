@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+    before_action :correct_user, only: %i[new,show] 
     def index
         @products = Product.all
     end
@@ -31,5 +32,10 @@ class ProductsController < ApplicationController
     private
     def product_params
         params.require(:product).permit(:name, :description, :price , :image)
+    end
+    def correct_user
+        if current_user.admin == false
+            redirect_back(fallback_location: root_path)
+        end
     end
 end

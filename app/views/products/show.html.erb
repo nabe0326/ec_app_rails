@@ -10,12 +10,11 @@
         <p class="value">¥<%= @product.price %></p>
       </div>
       <div class="btn">
-          <button>
-            <%= link_to "#" do %>
-              <span>買い物カゴに入れる</span>
-            <% end %>
-          </button>
+            <%# 商品詳細ページから、カートに追加するリンクを作成 %>
+            <%= button_to "買い物カゴに入れる", product_cart_products_path(@product), method: :post %>
+            <% if current_user.admin %>
           <button><%= link_to "編集", edit_product_path %></button>
+          <% end %>
       </div>
     </div>
   </div>

@@ -1,0 +1,67 @@
+<div class="container pt-5">
+  <div class="col-sm-8 offset-sm-2">
+    <h2 class="product-list-title">カート内商品一覧</h2>
+    <table class="table table-hover">
+      <tr>
+        <thead class="table-header">
+          <th>商品名</th>
+          <th>値段</th>
+          <td></td>
+        </thead>
+      </tr>
+      <% @products.each do |product| %>
+        <tr>
+          <tbody>
+            <td><%= product.name %></td>
+            <td><%= product.price %>円</td>
+            <td class="delete-button">
+              <%= button_to "削除する", product_cart_products_path(product) ,method: :delete, class: "btn btn-danger" %>
+            </td>
+          </tbody>
+        </tr>
+      <% end %>
+    </table>
+    <div class="cart-btn-wrap">
+      <button type="button" class="purchase-btn">
+        <i class="far fa-credit-card"></i>
+        <span>購入する</span>
+      </button>
+      <button type="button" class="purchase-btn">
+  <%= link_to products_path do %>
+    <span>買い物を続ける</span>
+  <% end %>
+</button>
+    </div>
+  </div>
+</div>
+
+<div class="" id="confirmModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-white">購入詳細</h5><%# Modal title %>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"><%# Modal内コンテンツ %>
+      <% @product_group.each do |product_name, product_count| %>
+    <p class="cart-product">
+      <%= product_name %>
+      x
+      <%= product_count %>個
+    </p>
+  <% end %>
+    <hr>
+    <p class="cart-products-total">
+        商品合計：<%= @products.count %>個 / <%# 追記　%>
+        合計金額：<%= @total_price %>円 <%# 追記　%>
+    </p>
+</div>
+      <div class="modal-footer"><%# モーダル下部 %>
+        <button type="button" class="btn btn-dark" data-dismiss="modal">閉じる</button>
+        <%= link_to "購入を確定する", complete_path, class: "btn bg-warning" %>
+      </div>
+    </div>
+  </div>
+</div>
